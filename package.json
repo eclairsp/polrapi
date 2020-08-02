@@ -10,8 +10,14 @@
     "author": "Prabhjyot Singh",
     "license": "ISC",
     "dependencies": {
+        "apollo-server": "^2.16.1",
+        "apollo-server-express": "^2.16.1",
+        "bcrypt": "^5.0.0",
         "dotenv": "^8.2.0",
-        "mongodb": "^3.6.0"
+        "express": "^4.17.1",
+        "graphql": "^15.3.0",
+        "mongodb": "^3.6.0",
+        "mongoose": "^5.9.27"
     },
     "devDependencies": {
         "@babel/core": "^7.11.0",
