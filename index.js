@@ -27,5 +27,5 @@ const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 
 httpServer.listen({port: process.env.PORT}, () => {
-    console.log(`Apollo Server running`);
+    console.log(`Apollo Server at /graphql`);
 });
