@@ -1,13 +1,14 @@
 import "dotenv/config";
-import "./src/db/db";
+import "@babel/polyfill";
+import "./db/db";
 
 import http from "http";
 import express from "express";
 import {ApolloServer} from "apollo-server-express";
 import schema from "./schema";
-import Query from "./src/resolvers/Query";
-import Mutation from "./src/resolvers/Mutation";
-import Subscription from "./src/resolvers/Subscription";
+import Query from "./resolvers/Query";
+import Mutation from "./resolvers/Mutation";
+import Subscription from "./resolvers/Subscription";
 
 const app = express();
 
