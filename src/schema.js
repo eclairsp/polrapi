@@ -5,11 +5,16 @@ const schema = gql`
         poll(id: ID!): Poll
         pollPrivate(id: ID!, password: String!): Poll
         polls: [Poll]
+        search(query: String!): [Poll]
     }
 
     type Mutation {
         createPoll(input: PollInput): onlyPoll
-        addVote(id: ID!): Option
+        addVote(options: [ID!]!, poll_id: ID!): Poll
+    }
+
+    type Subscription {
+        newVote(poll_id: ID!): Poll
     }
 
     input OptionInput {

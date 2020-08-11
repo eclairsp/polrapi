@@ -14,8 +14,21 @@ const Query = {
         return poll;
     },
     polls: async () => {
-        let polls = await Poll.find({privatePoll: false});
+        let polls = await Poll.find({privatePoll: false}).sort({
+            createdAt: "desc",
+        });
         return polls;
+    },
+    search: async (parent, {query}) => {
+        if (query === "") {
+            return [];
+        }
+        let poll = await Poll.find({
+            title: {$regex: query, $options: "i"},
+            description: {$regex: query, $options: "i"},
+            privatePoll: false,
+        });
+        return poll;
     },
 };
 
