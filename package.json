@@ -17,12 +17,11 @@
         "express": "^4.17.1",
         "graphql": "^15.3.0",
         "mongodb": "^3.6.0",
-        "mongoose": "^5.9.27"
-    },
-    "devDependencies": {
+        "mongoose": "^5.9.27",
         "@babel/core": "^7.11.0",
         "@babel/node": "^7.10.5",
         "@babel/preset-env": "^7.11.0",
         "nodemon": "^2.0.4"
-    }
+    },
+    "devDependencies": {}
 }
