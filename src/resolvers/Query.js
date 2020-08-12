@@ -9,8 +9,8 @@ const Query = {
         }
         return poll;
     },
-    pollPrivate: async (parent, args) => {
-        let poll = await Poll.findByPassword(args.id, args.password);
+    pollPrivate: async (parent, {id, password}) => {
+        let poll = await Poll.findByPassword(id, password);
         return poll;
     },
     polls: async () => {

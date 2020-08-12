@@ -51,20 +51,21 @@ var Query = {
     return poll;
   }(),
   pollPrivate: function () {
-    var _pollPrivate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, args) {
-      var poll;
+    var _pollPrivate = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(parent, _ref) {
+      var id, password, poll;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _context2.next = 2;
-              return _poll2["default"].findByPassword(args.id, args.password);
+              id = _ref.id, password = _ref.password;
+              _context2.next = 3;
+              return _poll2["default"].findByPassword(id, password);
 
-            case 2:
+            case 3:
               poll = _context2.sent;
               return _context2.abrupt("return", poll);
 
-            case 4:
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -111,13 +112,13 @@ var Query = {
     return polls;
   }(),
   search: function () {
-    var _search = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, _ref) {
+    var _search = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(parent, _ref2) {
       var query, poll;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
-              query = _ref.query;
+              query = _ref2.query;
 
               if (!(query === "")) {
                 _context4.next = 3;

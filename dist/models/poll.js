@@ -64,7 +64,7 @@ pollSchema.statics.findByPassword = /*#__PURE__*/function () {
             _context.next = 2;
             return Poll.findOne({
               _id: id
-            });
+            }).populate("options");
 
           case 2:
             poll = _context.sent;

@@ -48,7 +48,7 @@ pollSchema.virtual("options", {
 });
 
 pollSchema.statics.findByPassword = async (id, password) => {
-    const poll = await Poll.findOne({_id: id});
+    let poll = await Poll.findOne({_id: id}).populate("options");
 
     if (!poll) {
         throw new Error("No poll found");
