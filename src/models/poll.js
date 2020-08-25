@@ -33,6 +33,26 @@ const pollSchema = new mongoose.Schema(
                 }
             },
         },
+        totalVotes: {
+            type: Number,
+            validate(value) {
+                if (value < 0) {
+                    throw new Error("Total votes can't be negative");
+                }
+            },
+        },
+        views: {
+            type: Number,
+            validate(value) {
+                if (value < 0) {
+                    throw new Error("Can't have negative views");
+                }
+            },
+        },
+        popularity: {
+            type: Number,
+            default: 0,
+        },
     },
     {
         timestamps: true,
@@ -80,6 +100,26 @@ pollSchema.pre("save", async function (next) {
     }
 
     next();
+});
+
+pollSchema.post("findOneAndUpdate", async function (docs) {
+    const poll = this;
+    let totalVotes = docs.totalVotes;
+    let views = docs.views;
+
+    if (poll._update.$inc.totalVotes) {
+        totalVotes = totalVotes + poll._update.$inc.totalVotes;
+    }
+
+    if (poll._update.$inc.views) {
+        views = views + poll._update.$inc.views;
+    }
+
+    if (views != 0 && totalVotes != 0) {
+        docs.popularity = views / totalVotes;
+    }
+    docs.password = "password";
+    await docs.save();
 });
 
 const Poll = mongoose.model("Poll", pollSchema);

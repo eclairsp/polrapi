@@ -36,6 +36,9 @@ const schema = gql`
         description: String!
         privatePoll: Boolean!
         multipleOption: Boolean!
+        totalVotes: Int!
+        views: Int!
+        popularity: Float!
         createdAt: Float!
     }
 
@@ -45,6 +48,9 @@ const schema = gql`
         description: String!
         privatePoll: Boolean!
         multipleOption: Boolean!
+        totalVotes: Int!
+        views: Int!
+        popularity: Float!
         createdAt: Float!
         options: [Option]
     }

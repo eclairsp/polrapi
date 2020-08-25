@@ -52,8 +52,12 @@ const Mutation = {
         if (!poll.multipleOption && options.length === 1) {
             await Option.findOneAndUpdate(
                 {_id: options[0], pollId: poll_id},
-                {$inc: {vote: 1}},
-                {new: true}
+                {$inc: {vote: 1}}
+            );
+
+            await Poll.findOneAndUpdate(
+                {_id: poll_id},
+                {$inc: {totalVotes: 1}}
             );
 
             let poll = await Poll.findOne({_id: poll_id}).populate("options");
@@ -72,6 +76,11 @@ const Mutation = {
                     {new: true}
                 );
             });
+
+            await Poll.findOneAndUpdate(
+                {_id: poll_id},
+                {$inc: {totalVotes: options.length}}
+            );
 
             let poll = await Poll.findOne({_id: poll_id}).populate("options");
             pubsub.publish("newVote", {

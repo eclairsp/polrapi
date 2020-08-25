@@ -1,9 +1,12 @@
 import Poll from "../models/poll";
-import Option from "../models/option";
 
 const Query = {
-    poll: async (parent, args) => {
-        let poll = await Poll.findOne({_id: args.id}).populate("options");
+    poll: async (parent, {id}) => {
+        let poll = await Poll.findOneAndUpdate(
+            {_id: id},
+            {$inc: {views: 1}},
+            {new: true}
+        ).populate("options");
         if (poll.privatePoll) {
             throw new Error("Can only get public polls.");
         }
@@ -15,7 +18,7 @@ const Query = {
     },
     polls: async () => {
         let polls = await Poll.find({privatePoll: false}).sort({
-            createdAt: "desc",
+            popularity: "desc",
         });
         return polls;
     },
